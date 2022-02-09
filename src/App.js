@@ -42,7 +42,7 @@ function App() {
         <Alert alert={alert} />
         <Switch>
           <Route path="/about">
-            <AboutUs mode={mode}/>
+            <AboutUs mode={mode} />
           </Route>
           <Route path="/">
             <TextForm mode={mode} showAlert={showAlert} />

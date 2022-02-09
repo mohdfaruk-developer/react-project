@@ -38,8 +38,8 @@ export default function TextForm(props) {
     const handleCopy = () =>{
         let newText=document.getElementById("myBox");
         newText.select()
-        newText.setSelectionRange(0,9999)
         navigator.clipboard.writeText(newText.value)
+        document.getSelection().removeAllRanges()
         props.showAlert("copy the text",'success')
     }
 
@@ -52,7 +52,7 @@ export default function TextForm(props) {
     return (
         <>
             <div className='container mt-4 mb-5'>
-                <div className="col-9 mx-auto">
+                <div className="col mx-auto">
                     {/* <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
                         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
@@ -66,15 +66,15 @@ export default function TextForm(props) {
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                         <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
                     </div> */}
-                    <h2 className='my-2' style={{color:`${props.mode==='light'?'black':'white'}`}} >Enter Text in The Textarea</h2>
-                    <textarea className="form-control" id="myBox" value={text} onChange={handleOnChange} rows="7" style={{backgroundColor: `${props.mode==='dark'?'gray':'white'}`, color:`${props.mode==='light'?'black':'white'}` }}></textarea>
-                    <button className="btn btn-primary my-2" onClick={handleUpper}>Upper Case</button>
-                    <button className="btn btn-primary my-2 ml-2" onClick={handleLower}>Lower Case</button>
-                    <button className="btn btn-primary my-2 ml-2" onClick={Captalize}>Tital Case</button>
-                    <button className="btn btn-primary my-2 ml-2" onClick={Remove}>Remove Extra Space</button>
-                    <button className="btn btn-primary my-2 ml-2" onClick={handleClear}>Text Clear</button>
-                    <button className="btn btn-primary my-2 ml-2" onClick={handleCopy}>Text Copy</button>
-                    <button type="button" className="btn btn-primary my-2 ml-2" data-toggle="modal" data-target="#staticBackdrop"> Preview </button>
+                    <h2 className='my-2 heading' style={{color:`${props.mode==='light'?'black':'white'}`}} >Enter Text in The Textarea</h2>
+                    <textarea className="form-control" id="myBox" value={text} onChange={handleOnChange} rows="7" style={{backgroundColor: `${props.mode==='dark'?'#031f3a':'white'}`, color:`${props.mode==='light'?'black':'white'}` }}></textarea>
+                    <button disabled={text.length===0} className="btn btn-primary my-2 ml-2" onClick={handleUpper}>Upper Case</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-2 ml-2" onClick={handleLower}>Lower Case</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-2 ml-2" onClick={Captalize}>Tital Case</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-2 ml-2" onClick={Remove}>Remove Extra Space</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-2 ml-2" onClick={handleClear}>Text Clear</button>
+                    <button disabled={text.length===0} className="btn btn-primary my-2 ml-2" onClick={handleCopy}>Text Copy</button>
+                    <button disabled={text.length===0} type="button" className="btn btn-primary my-2 ml-2" data-toggle="modal" data-target="#staticBackdrop"> Preview </button>
                 </div>
             </div>
 
@@ -91,7 +91,7 @@ export default function TextForm(props) {
                             <p>{text}</p>
                         </div>
                         <div className="modal-footer">
-                            Text Stutes : {text===''?0:text.split(" ").length} Words {"&"} {text.length} Charater
+                            Text Stutes : {text.split(" ").filter((element)=>{return element.length!==0}).length} Words {"&"} {text.length} Charater
                         </div>
                     </div>
                 </div>

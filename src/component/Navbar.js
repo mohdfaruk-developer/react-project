@@ -15,10 +15,10 @@ export default function Navbar(props) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item active active">
+            <li className="nav-item active active mx-1">
               <Link className="nav-link" to="/">Home</Link>
             </li>
-            <li className="nav-item active">
+            <li className="nav-item active mx-1">
               <Link className="nav-link" to="/">Link</Link>
             </li>
             {/* <li className="nav-item active dropdown">
@@ -33,11 +33,11 @@ export default function Navbar(props) {
                 <Link className="dropdown-item" to="/">Something else here</Link>
               </div>
             </li> */}
-            <li className="nav-item active">
+            <li className="nav-item active mx-1">
               <Link className="nav-link" to="/about" >{props.aboutest}</Link>
             </li>
           </ul>
-          <div className={`custom-control custom-switch ml-1 text-${props.mode==='light'?'dark':'light'}`}>
+          <div className={`custom-control custom-switch mx-1 text-${props.mode==='light'?'dark':'light'}`}>
             <input type="checkbox" className="custom-control-input" id="customSwitch1" onClick={props.togglemode} />
               <label className="custom-control-label" htmlFor="customSwitch1">{props.mode==='light'?'Enable Dark Mode':'Enable light Mode'}</label>
           </div>
